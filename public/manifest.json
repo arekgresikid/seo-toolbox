@@ -1,0 +1,16 @@
+{
+  "name": "SEO Toolbox Pro",
+  "short_name": "SEOPro",
+  "description": "All-in-One SEO Suite & AI Optimizer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

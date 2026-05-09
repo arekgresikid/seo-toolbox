@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
-// Menggunakan Named Export 'proxy' sesuai standar Next.js 16
-export const proxy = clerkMiddleware((auth, req) => {
+// Menggunakan Middleware standar agar kompatibel dengan Cloudflare Edge
+export default clerkMiddleware((auth, req) => {
   const response = NextResponse.next();
 
   // Penegakan Header Keamanan

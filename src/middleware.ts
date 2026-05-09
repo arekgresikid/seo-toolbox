@@ -1,7 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 // Menggunakan Middleware standar agar kompatibel dengan Cloudflare Edge
 export default clerkMiddleware((auth, req) => {

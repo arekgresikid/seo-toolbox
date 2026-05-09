@@ -1,6 +1,6 @@
 #:schema node_modules/wrangler/config-schema.json
 name = "seo-toolbox"
-compatibility_date = "2024-12-30"
+compatibility_date = "2025-05-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "out"
 

@@ -12,51 +12,32 @@ export const onRequestGet: PagesFunction = async (context) => {
   }
 
   try {
-    const parsedUrl = new URL(targetUrl);
-    
-    // SSRF Protection
-    if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
-      return new Response(JSON.stringify({ error: 'Invalid protocol' }), { 
-        status: 400, 
-        headers: { 'Content-Type': 'application/json' } 
-      });
-    }
-
-    const hostname = parsedUrl.hostname.toLowerCase();
-    const isLocalOrPrivate = [
-      'localhost', '127.0.0.1', '0.0.0.0', '169.254.169.254', '::1'
-    ].includes(hostname) || 
-    hostname.startsWith('192.168.') || 
-    hostname.startsWith('10.') || 
-    (hostname.startsWith('172.') && parseInt(hostname.split('.')[1]) >= 16 && parseInt(hostname.split('.')[1]) <= 31);
-
-    if (isLocalOrPrivate) {
-      return new Response(JSON.stringify({ error: 'Access to private/local networks is forbidden' }), { 
-        status: 403, 
-        headers: { 'Content-Type': 'application/json' } 
-      });
-    }
-
+    // Menambahkan User-Agent agar tidak dianggap bot sederhana oleh beberapa situs
     const response = await fetch(targetUrl, {
+      redirect: 'follow',
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      redirect: 'manual'
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+      }
     });
 
-    const data = await response.text();
-    const location = response.headers.get('location');
-    
-    return new Response(JSON.stringify({
+    const content = await response.text();
+
+    // Pastikan kita mengembalikan status asli dan kontennya
+    return new Response(JSON.stringify({ 
+      content,
       status: response.status,
-      content: data,
-      location: location,
-      contentType: response.headers.get('Content-Type')
+      statusText: response.statusText,
+      finalUrl: response.url
     }), { 
-      headers: { 'Content-Type': 'application/json' } 
+      headers: { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' 
+      } 
     });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: 'Invalid URL or failed to fetch' }), { 
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: `Failed to fetch: ${error.message}` }), { 
       status: 500, 
       headers: { 'Content-Type': 'application/json' } 
     });

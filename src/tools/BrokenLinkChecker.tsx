@@ -33,9 +33,11 @@ const BrokenLinkChecker = () => {
       
       const anchorTags = Array.from(doc.querySelectorAll('a'));
       const detectedLinks: LinkStatus[] = anchorTags
-        .map(a => {
+        .map((a): LinkStatus | null => {
+          const href = a.getAttribute('href');
+          if (!href) return null;
           try {
-            const absoluteUrl = new URL(a.getAttribute('href') || '', base).href;
+            const absoluteUrl = new URL(href, base).href;
             return {
               url: absoluteUrl,
               text: a.innerText.trim() || '(No Text)',
@@ -47,7 +49,7 @@ const BrokenLinkChecker = () => {
           }
         })
         .filter((l): l is LinkStatus => l !== null && l.url.startsWith('http'))
-        .slice(0, 20); // Limit to 20 for performance
+        .slice(0, 20);
 
       setLinks(detectedLinks);
       toast.success(`Found ${detectedLinks.length} links. Starting validation...`);

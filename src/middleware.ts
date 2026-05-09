@@ -1,20 +1,10 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export const runtime = 'experimental-edge';
-
-// Menggunakan Middleware standar agar kompatibel dengan Cloudflare Edge
-export default clerkMiddleware((auth, req) => {
-  const response = NextResponse.next();
-
-  // Penegakan Header Keamanan
-  response.headers.set('X-XSS-Protection', '1; mode=block');
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-  return response;
-});
+// Sederhanakan middleware sementara untuk debugging ISE
+export default function middleware(request: NextRequest) {
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [
@@ -22,3 +12,5 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+
+export const runtime = "edge";

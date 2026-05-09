@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Image as ImageIcon, Search, CheckCircle, XCircle, Loader2, AlertCircle, Info } from 'lucide-react';

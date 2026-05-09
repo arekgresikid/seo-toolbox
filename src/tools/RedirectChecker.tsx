@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Repeat, ArrowRight, CheckCircle, Search, Loader2, AlertCircle } from 'lucide-react';

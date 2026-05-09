@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Copy, Download, RefreshCw, CheckCircle, AlertCircle, Info, ExternalLink, Globe, Loader2, Image as ImageIcon } from 'lucide-react';

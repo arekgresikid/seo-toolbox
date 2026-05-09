@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Copy, Download, Plus, Trash2, ShieldCheck, CheckCircle, XCircle, Search, Loader2 } from 'lucide-react';

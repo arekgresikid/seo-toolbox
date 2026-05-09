@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Copy, Languages, Plus, Trash2, Info, CheckCircle, Link as LinkIcon } from 'lucide-react';

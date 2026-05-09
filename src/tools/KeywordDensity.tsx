@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Search, Loader2, BarChart2, Info } from 'lucide-react';

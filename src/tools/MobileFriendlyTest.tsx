@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Smartphone, Tablet, Monitor, Info, CheckCircle, AlertCircle, Search } from 'lucide-react';

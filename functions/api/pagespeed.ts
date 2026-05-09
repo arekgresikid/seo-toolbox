@@ -1,31 +1,35 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const targetUrl = searchParams.get('url');
-  const strategy = searchParams.get('strategy') || 'mobile';
-  const apiKey = process.env.PAGESPEED_API_KEY;
+export const onRequestGet = async (context) => {
+  const url = new URL(context.request.url);
+  const targetUrl = url.searchParams.get('url');
+  const strategy = url.searchParams.get('strategy') || 'mobile';
+  const apiKey = context.env.PAGESPEED_API_KEY;
 
   if (!targetUrl) {
-    return NextResponse.json({ error: 'URL is required' }, { status: 400 });
+    return new Response(JSON.stringify({ error: 'URL is required' }), { 
+      status: 400, 
+      headers: { 'Content-Type': 'application/json' } 
+    });
   }
 
   if (!apiKey) {
-    return NextResponse.json({ error: 'API Key not configured' }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'API Key not configured' }), { 
+      status: 500, 
+      headers: { 'Content-Type': 'application/json' } 
+    });
   }
 
   try {
-    // Categories: performance, accessibility, best-practices, seo
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(targetUrl)}&key=${apiKey}&strategy=${strategy}&category=performance&category=accessibility&category=best-practices&category=seo`;
-    
     const response = await fetch(apiUrl);
     const data = await response.json();
 
     if (data.error) {
-      return NextResponse.json({ error: data.error.message }, { status: data.error.code || 500 });
+      return new Response(JSON.stringify({ error: data.error.message }), { 
+        status: data.error.code || 500, 
+        headers: { 'Content-Type': 'application/json' } 
+      });
     }
 
-    // Extract simplified data for the UI
     const lighthouse = data.lighthouseResult;
     const simplified = {
       scores: {
@@ -46,8 +50,13 @@ export async function GET(request: NextRequest) {
       }
     };
 
-    return NextResponse.json(simplified);
+    return new Response(JSON.stringify(simplified), { 
+      headers: { 'Content-Type': 'application/json' } 
+    });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch PageSpeed data' }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to fetch PageSpeed data' }), { 
+      status: 500, 
+      headers: { 'Content-Type': 'application/json' } 
+    });
   }
 }

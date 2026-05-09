@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { FileJson, Play, CheckCircle, XCircle, Info, AlertTriangle } from 'lucide-react';

@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Zap, ExternalLink, Search, Info, CheckCircle, BarChart3, Loader2, Smartphone, Monitor } from 'lucide-react';

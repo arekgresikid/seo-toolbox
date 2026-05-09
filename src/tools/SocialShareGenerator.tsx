@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Share2, Copy, MessageCircle, Send, Layout, ExternalLink } from 'lucide-react';

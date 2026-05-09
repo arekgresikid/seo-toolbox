@@ -1,9 +1,7 @@
-'use client';
-
 import React from 'react';
 import { Sun, Moon, Search } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useUser, SignInButton, UserButton } from "@clerk/nextjs";
+import { useUser, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();

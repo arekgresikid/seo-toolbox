@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useState } from 'react';
 import { Copy, Download, Plus, Trash2, FileText, AlertTriangle } from 'lucide-react';

@@ -1,14 +1,7 @@
-#:schema node_modules/wrangler/config-schema.json
 name = "seo-toolbox"
 compatibility_date = "2025-05-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "out"
 
-# Optional: Add environment variables
-# [vars]
-# NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = "..."
-
-# Optional: Add KV namespaces or other bindings if needed
-# [[kv_namespaces]]
-# binding = "NEXT_CACHE_WORKERS_KV"
-# id = "<YOUR_KV_NAMESPACE_ID>"
+[pages_build_output_dir]
+# Cloudflare Pages will use 'dist' as the static asset directory
+dir = "dist"

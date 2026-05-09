@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useUser, SignInButton } from "@clerk/nextjs";
+import { useUser, SignInButton } from "@clerk/clerk-react";
 import { Lock, Sparkles } from 'lucide-react';
 
 interface AuthGuardProps {

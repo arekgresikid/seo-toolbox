@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import MetaTagGenerator from './tools/MetaTagGenerator';
@@ -17,6 +17,7 @@ import PwaGenerator from './tools/PwaGenerator';
 import SocialShareGenerator from './tools/SocialShareGenerator';
 import ImageSeoAnalyzer from './tools/ImageSeoAnalyzer';
 import GeoOptimizer from './tools/GeoOptimizer';
+import ViewSource from './tools/ViewSource';
 import { ToolType } from './types';
 import { Menu } from 'lucide-react';
 
@@ -49,6 +50,7 @@ function App() {
       case 'social-share': return <SocialShareGenerator />;
       case 'image-seo': return <ImageSeoAnalyzer />;
       case 'geo-optimizer': return <GeoOptimizer />;
+      case 'view-source': return <ViewSource />;
       default: return <MetaTagGenerator />;
     }
   };
@@ -70,6 +72,7 @@ function App() {
     { id: 'social-share', name: 'Social Share Links' },
     { id: 'image-seo', name: 'Image SEO' },
     { id: 'geo-optimizer', name: 'GEO Optimizer' },
+    { id: 'view-source', name: 'View Source' },
   ];
 
   return (

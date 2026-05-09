@@ -14,7 +14,8 @@ export type ToolType =
   | 'pwa-gen'
   | 'social-share'
   | 'image-seo'
-  | 'geo-optimizer';
+  | 'geo-optimizer'
+  | 'view-source';
 
 export interface MetaTags {
   title: string;

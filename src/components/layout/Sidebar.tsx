@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   FileCode, 
   Map, 
@@ -15,7 +14,8 @@ import {
   Package,
   Share2,
   Image as ImageIcon,
-  Bot
+  Bot,
+  Code
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToolType } from '@/types';
@@ -42,6 +42,7 @@ const tools = [
   { id: 'social-share', name: 'Social Share Links', icon: Share2 },
   { id: 'image-seo', name: 'Image SEO', icon: ImageIcon },
   { id: 'geo-optimizer', name: 'GEO Optimizer', icon: Bot },
+  { id: 'view-source', name: 'View Source', icon: Code },
 ];
 
 const Sidebar = ({ activeTool, setActiveTool }: SidebarProps) => {

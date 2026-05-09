@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Bot, Search, Loader2, CheckCircle, AlertTriangle, Info, BarChart3, Quote, Key, Sparkles } from 'lucide-react';
+import { Bot, Search, Loader2, CheckCircle, AlertTriangle, BarChart3, Quote, Key, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface GeoAnalysis {
@@ -48,7 +48,7 @@ const GeoOptimizer = () => {
     try {
       const proxyUrl = `/api/proxy?url=${encodeURIComponent(url)}`;
       const response = await fetch(proxyUrl);
-      const data = await response.json();
+      const data: any = await response.json();
       const html = data.content;
 
       const parser = new DOMParser();
@@ -113,7 +113,7 @@ const GeoOptimizer = () => {
               }]
             })
           });
-          const aiData = await aiResponse.json();
+          const aiData: any = await aiResponse.json();
           aiAdvice = aiData.candidates[0].content.parts[0].text;
         } catch (e) {
           console.error("AI Analysis failed", e);

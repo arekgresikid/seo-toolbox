@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Zap, ExternalLink, Search, CheckCircle, BarChart3, Loader2, Smartphone, Monitor, Key } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -48,7 +48,7 @@ const PageSpeedInsights = () => {
 
     try {
       const response = await fetch(`/api/pagespeed?url=${encodeURIComponent(url)}&strategy=${strategy}&apiKey=${encodeURIComponent(apiKey)}`);
-      const result = await response.json();
+      const result: any = await response.json();
 
       if (result.error) {
         throw new Error(result.error);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sun, Moon, Search } from 'lucide-react';
 import { useTheme } from 'next-themes';
 

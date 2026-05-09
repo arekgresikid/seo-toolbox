@@ -2,7 +2,7 @@
 name = "seo-toolbox"
 compatibility_date = "2024-12-30"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".open-next/assets"
+pages_build_output_dir = ".open-next"
 
 # Optional: Add environment variables
 # [vars]

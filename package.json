@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:worker": "npx @opennextjs/cloudflare build && mv .open-next/worker.js .open-next/_worker.js",
+    "build:worker": "npx @opennextjs/cloudflare build && rm -rf out && mkdir -p out && cp -rL .open-next/* out/ && mv out/worker.js out/_worker.js",
     "dev:worker": "pnpm build:worker && wrangler dev",
     "deploy": "pnpm build:worker && wrangler deploy"
   },

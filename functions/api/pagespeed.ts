@@ -1,4 +1,8 @@
-export const onRequestGet = async (context) => {
+interface Env {
+  PAGESPEED_API_KEY: string;
+}
+
+export const onRequestGet: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
   const targetUrl = url.searchParams.get('url');
   const strategy = url.searchParams.get('strategy') || 'mobile';
@@ -21,7 +25,7 @@ export const onRequestGet = async (context) => {
   try {
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(targetUrl)}&key=${apiKey}&strategy=${strategy}&category=performance&category=accessibility&category=best-practices&category=seo`;
     const response = await fetch(apiUrl);
-    const data = await response.json();
+    const data: any = await response.json();
 
     if (data.error) {
       return new Response(JSON.stringify({ error: data.error.message }), { 

@@ -1,4 +1,4 @@
-export const onRequestGet = async (context) => {
+export const onRequestGet: PagesFunction = async (context) => {
   const url = new URL(context.request.url);
   const targetUrl = url.searchParams.get('url');
 

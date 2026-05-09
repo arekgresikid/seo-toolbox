@@ -1,6 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 // Menggunakan Named Export 'proxy' sesuai standar Next.js 16
 export const proxy = clerkMiddleware((auth, req) => {
   const response = NextResponse.next();

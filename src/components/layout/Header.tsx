@@ -1,11 +1,9 @@
 import React from 'react';
 import { Sun, Moon, Search } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useUser, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
-  const { isSignedIn, isLoaded } = useUser();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,26 +27,6 @@ const Header = () => {
             <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </button>
-
-          {isLoaded && (
-            <div className="flex items-center gap-2">
-              {!isSignedIn ? (
-                <SignInButton mode="modal">
-                  <button className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity">
-                    Sign In
-                  </button>
-                </SignInButton>
-              ) : (
-                <UserButton 
-                  appearance={{
-                    elements: {
-                      userButtonAvatarBox: "h-10 w-10 rounded-lg"
-                    }
-                  }}
-                />
-              )}
-            </div>
-          )}
         </div>
       </div>
     </header>

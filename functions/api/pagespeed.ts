@@ -1,14 +1,16 @@
 /// <reference types="@cloudflare/workers-types" />
 
 interface Env {
-  PAGESPEED_API_KEY: string;
+  PAGESPEED_API_KEY?: string;
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
   const targetUrl = url.searchParams.get('url');
   const strategy = url.searchParams.get('strategy') || 'mobile';
-  const apiKey = context.env.PAGESPEED_API_KEY;
+  
+  // Use apiKey from query param if provided by user, otherwise fallback to server env
+  const apiKey = url.searchParams.get('apiKey') || context.env.PAGESPEED_API_KEY;
 
   if (!targetUrl) {
     return new Response(JSON.stringify({ error: 'URL is required' }), { 
@@ -18,8 +20,8 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   }
 
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'API Key not configured' }), { 
-      status: 500, 
+    return new Response(JSON.stringify({ error: 'PageSpeed API Key is required. Please provide it in the input field.' }), { 
+      status: 400, 
       headers: { 'Content-Type': 'application/json' } 
     });
   }
